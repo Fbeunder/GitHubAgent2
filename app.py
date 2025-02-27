@@ -6,12 +6,11 @@ werkende Streamlit applicatie die gebruikers in staat stelt om de robot te bekij
 erop te klikken en grappige uitspraken te zien.
 """
 
-import os
 import streamlit as st
 import robot_display
 import quote_generator
 import styles
-from constants import APP_TITLE, APP_DESCRIPTION, ROBOT_IMAGE_PATH
+from constants import APP_TITLE, APP_DESCRIPTION
 
 
 def setup_page_config():
@@ -100,14 +99,12 @@ def display_robot_section():
     robot_container = st.container()
     
     with robot_container:
-        # Controleer of het bestand bestaat voordat we het proberen weer te geven
-        if not os.path.exists(ROBOT_IMAGE_PATH):
-            st.error(f"Robot afbeelding niet gevonden op pad: {ROBOT_IMAGE_PATH}")
+        # Gebruik de robot_display module om de robot weer te geven
+        success = robot_display.display_robot()
+        
+        if not success:
             st.info("Zorg ervoor dat de assets directory bestaat met een robot.svg bestand.")
             return
-        
-        # Gebruik de robot_display module om de robot weer te geven
-        robot_clicked = robot_display.display_robot()
         
         # Een onzichtbare button onder de robot voor klikinteractie
         # (Streamlit heeft geen directe klik-detectie op afbeeldingen)
