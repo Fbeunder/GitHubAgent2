@@ -6,8 +6,28 @@ en bevat functies voor het tonen en stylen van de robot afbeelding.
 """
 
 import os
+import base64
 import streamlit as st
 from constants import ROBOT_IMAGE_PATH, PRIMARY_COLOR
+
+
+def get_base64_encoded_image(image_path):
+    """
+    Leest een afbeeldingsbestand en retourneert de base64-encoded versie.
+    
+    Args:
+        image_path (str): Pad naar de afbeelding
+        
+    Returns:
+        str: Base64-encoded afbeelding string
+    """
+    try:
+        with open(image_path, "rb") as image_file:
+            encoded = base64.b64encode(image_file.read()).decode()
+            return encoded
+    except Exception as e:
+        st.error(f"Fout bij het lezen van afbeelding: {str(e)}")
+        return None
 
 
 def display_robot():
@@ -24,6 +44,12 @@ def display_robot():
         # Controleer of het bestand bestaat
         if not os.path.exists(ROBOT_IMAGE_PATH):
             st.error(f"Robot afbeelding niet gevonden op pad: {ROBOT_IMAGE_PATH}")
+            return False
+        
+        # Haal de base64-encoded SVG op
+        encoded_image = get_base64_encoded_image(ROBOT_IMAGE_PATH)
+        if not encoded_image:
+            st.error("Kon de robotafbeelding niet inlezen")
             return False
         
         # CSS voor hover-effect
@@ -53,10 +79,11 @@ def display_robot():
         
         with col2:
             # Toon de robot afbeelding in HTML om hover-effect mogelijk te maken
+            # Gebruik data URI voor de afbeelding
             st.markdown(
                 f"""
                 <div class="robot-container">
-                    <img src="{ROBOT_IMAGE_PATH}" alt="GitHub Agent Robot">
+                    <img src="data:image/svg+xml;base64,{encoded_image}" alt="GitHub Agent Robot">
                 </div>
                 """, 
                 unsafe_allow_html=True
@@ -79,9 +106,18 @@ def get_robot_html(width=300):
     Returns:
         str: HTML code voor het weergeven van de robot
     """
+    # Controleer of het bestand bestaat
+    if not os.path.exists(ROBOT_IMAGE_PATH):
+        return f"<div>Robot afbeelding niet gevonden op pad: {ROBOT_IMAGE_PATH}</div>"
+    
+    # Haal de base64-encoded SVG op
+    encoded_image = get_base64_encoded_image(ROBOT_IMAGE_PATH)
+    if not encoded_image:
+        return "<div>Kon de robotafbeelding niet inlezen</div>"
+    
     return f"""
     <div class="robot-container" style="width: {width}px;">
-        <img src="{ROBOT_IMAGE_PATH}" alt="GitHub Agent Robot">
+        <img src="data:image/svg+xml;base64,{encoded_image}" alt="GitHub Agent Robot">
     </div>
     """
 
