@@ -35,7 +35,7 @@ def display_robot():
     Toont de robot afbeelding in de Streamlit app.
     
     Laadt de robot afbeelding uit het gespecificeerde pad in constants.py
-    en geeft deze weer in het midden van de app met een hover-effect.
+    en geeft deze weer in het midden van de app met een hover-effect en klikfunctionaliteit.
     
     Returns:
         bool: True als de robot succesvol is weergegeven, anders False
@@ -51,6 +51,10 @@ def display_robot():
         if not encoded_image:
             st.error("Kon de robotafbeelding niet inlezen")
             return False
+        
+        # Genereer een unieke key voor de sessie
+        if 'robot_click_key' not in st.session_state:
+            st.session_state.robot_click_key = 0
         
         # CSS voor hover-effect
         hover_css = f"""
@@ -70,6 +74,10 @@ def display_robot():
                 max-width: 100%;
                 border-radius: 10px;
             }}
+            /* Verberg de submit knop */
+            .robot-click-form .stButton {{
+                display: none;
+            }}
         </style>
         """
         st.markdown(hover_css, unsafe_allow_html=True)
@@ -78,6 +86,26 @@ def display_robot():
         col1, col2, col3 = st.columns([1, 2, 1])
         
         with col2:
+            # JavaScript om de form te submitten wanneer op de robot wordt geklikt
+            javascript = f"""
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {{
+                    const robotContainer = document.querySelector('.robot-container');
+                    const robotForm = document.querySelector('.robot-click-form form');
+                    
+                    if (robotContainer && robotForm) {{
+                        robotContainer.addEventListener('click', function() {{
+                            const submitButton = robotForm.querySelector('button[type="submit"]');
+                            if (submitButton) {{
+                                submitButton.click();
+                            }}
+                        }});
+                    }}
+                }});
+            </script>
+            """
+            st.markdown(javascript, unsafe_allow_html=True)
+            
             # Toon de robot afbeelding in HTML om hover-effect mogelijk te maken
             # Gebruik data URI voor de afbeelding
             st.markdown(
@@ -88,6 +116,25 @@ def display_robot():
                 """, 
                 unsafe_allow_html=True
             )
+
+            # Onzichtbare form die wordt gesubmit wanneer op de robot wordt geklikt
+            with st.form(key=f"robot_click_form_{st.session_state.robot_click_key}", clear_on_submit=False):
+                st.form_submit_button("Robot Klik", type="primary", use_container_width=True, 
+                                     on_click=lambda: st.session_state.update({"robot_was_clicked": True}))
+        
+        # Check of er geklikt is op de robot sinds laatste render
+        if st.session_state.get("robot_was_clicked", False):
+            # Reset de robot_was_clicked flag
+            st.session_state.robot_was_clicked = False
+            
+            # Verhoog de robot_click_key voor de volgende keer
+            st.session_state.robot_click_key += 1
+            
+            # Voer de klikactie uit zoals gedefinieerd in app.py
+            import quote_generator
+            st.session_state.click_count += 1
+            st.session_state.current_quote = quote_generator.get_next_quote_with_state()
+            st.rerun()
         
         return True
         
