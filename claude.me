@@ -25,13 +25,17 @@ Het project heeft een modulaire structuur met de volgende modules:
     - Afhankelijkheden: robot_display.py, quote_generator.py, styles.py
 
 ### robot_display.py
-- **Status**: Niet geïmplementeerd
+- **Status**: Geïmplementeerd
 - **Bestandsnaam**: robot_display.py
 - **Functionaliteit**: Module voor het weergeven van de robot afbeelding
 - **Belangrijkste functies**:
   - `display_robot()`: Toont de robot afbeelding in de Streamlit app
     - Parameters: Geen
     - Return waardes: Boolean (True als succesvol weergegeven)
+    - Afhankelijkheden: constants.py
+  - `get_robot_html(width=300)`: Helper functie voor het genereren van HTML voor de robot
+    - Parameters: width (int): Breedte van de robot afbeelding in pixels
+    - Return waardes: String (HTML code voor de robot)
     - Afhankelijkheden: constants.py
 
 ### quote_generator.py
@@ -66,13 +70,13 @@ Het project heeft een modulaire structuur met de volgende modules:
   - `PRIMARY_COLOR`, `SECONDARY_COLOR`, `BACKGROUND_COLOR`, `TEXT_COLOR`: Kleuren voor styling
 
 ## 4. Status
-De constants.py module is geïmplementeerd. De overige modules zijn nog niet geïmplementeerd. Het project bevindt zich in de implementatiefase.
+De constants.py en robot_display.py modules zijn geïmplementeerd. De overige modules zijn nog niet geïmplementeerd. Het project bevindt zich in de implementatiefase.
 
 ## 5. Volgende stappen
 
 ### Must-haves:
 1. ✅ Implementeer constants.py met een lijst van grappige uitspraken
-2. Implementeer de basic robot_display.py module voor het weergeven van de robot
+2. ✅ Implementeer de basic robot_display.py module voor het weergeven van de robot
 3. Implementeer quote_generator.py voor het genereren van uitspraken
 4. Implementeer styles.py voor de basis styling
 5. Implementeer app.py als hoofdmodule om alles samen te voegen
