@@ -61,13 +61,23 @@ Het project heeft een modulaire structuur met de volgende modules:
     - Afhankelijkheden: streamlit, constants.py
 
 ### styles.py
-- **Status**: Niet geïmplementeerd
+- **Status**: Geïmplementeerd
 - **Bestandsnaam**: styles.py
 - **Functionaliteit**: Module voor het definiëren van CSS-stijlen voor de applicatie
 - **Belangrijkste functies**:
   - `load_styles()`: Laadt de CSS-stijlen in de Streamlit app
     - Parameters: Geen
-    - Return waardes: String (CSS-code)
+    - Return waardes: String (CSS-code die in Streamlit kan worden geladen)
+    - Afhankelijkheden: constants.py
+  - `apply_styles()`: Past de stijlen direct toe op de Streamlit app
+    - Parameters: Geen
+    - Return waardes: Geen
+    - Afhankelijkheden: streamlit
+  - `create_quote_html(quote_text, is_new=True)`: Genereert HTML voor een gestileerde quote
+    - Parameters: 
+      - quote_text (str): De tekst van de quote
+      - is_new (bool, optioneel): Of de quote nieuw is (voor animatie)
+    - Return waardes: String (HTML code voor de gestileerde quote)
     - Afhankelijkheden: Geen
 
 ### constants.py
@@ -82,7 +92,7 @@ Het project heeft een modulaire structuur met de volgende modules:
   - `PRIMARY_COLOR`, `SECONDARY_COLOR`, `BACKGROUND_COLOR`, `TEXT_COLOR`: Kleuren voor styling
 
 ## 4. Status
-De constants.py, robot_display.py en quote_generator.py modules zijn geïmplementeerd. De overige modules zijn nog niet geïmplementeerd. Het project bevindt zich in de implementatiefase.
+De constants.py, robot_display.py, quote_generator.py en styles.py modules zijn geïmplementeerd. Alleen de app.py module moet nog worden geïmplementeerd. Het project bevindt zich in de laatste fase van implementatie.
 
 ## 5. Volgende stappen
 
@@ -90,7 +100,7 @@ De constants.py, robot_display.py en quote_generator.py modules zijn geïmplemen
 1. ✅ Implementeer constants.py met een lijst van grappige uitspraken
 2. ✅ Implementeer de basic robot_display.py module voor het weergeven van de robot
 3. ✅ Implementeer quote_generator.py voor het genereren van uitspraken
-4. Implementeer styles.py voor de basis styling
+4. ✅ Implementeer styles.py voor de basis styling
 5. Implementeer app.py als hoofdmodule om alles samen te voegen
 6. Maak een requirements.txt bestand
 7. Maak een README.md met installatie-instructies
