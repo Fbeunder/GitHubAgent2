@@ -1,0 +1,82 @@
+# Stan de GitHub Agent - Projectoverzicht
+
+## 1. Projectoverzicht
+Stan de GitHub Agent is een interactieve Streamlit webapplicatie die een klikbare robot weergeeft. Wanneer gebruikers op de robot klikken, verschijnen er grappige uitspraken over wat een GitHub Agent allemaal kan doen. Bij elke volgende klik wordt een nieuwe uitspraak getoond. De applicatie is bedoeld om op een leuke, interactieve manier de mogelijkheden van een GitHub Agent te demonstreren.
+
+## 2. Architectuur
+Het project heeft een modulaire structuur met de volgende modules:
+
+- **app.py**: Hoofdapplicatie en Streamlit interface
+- **robot_display.py**: Module voor het weergeven van de robot
+- **quote_generator.py**: Module voor het genereren van grappige uitspraken
+- **styles.py**: Module voor CSS-styling van de applicatie
+- **constants.py**: Module voor het centraal bewaren van constanten zoals uitspraken
+
+## 3. Modules
+
+### app.py
+- **Status**: Niet geïmplementeerd
+- **Bestandsnaam**: app.py
+- **Functionaliteit**: Hoofdmodule die de Streamlit applicatie initialiseert en de andere modules samenvoegt
+- **Belangrijkste functies**:
+  - `main()`: Start de Streamlit applicatie
+    - Parameters: Geen
+    - Return waardes: Geen
+    - Afhankelijkheden: robot_display.py, quote_generator.py, styles.py
+
+### robot_display.py
+- **Status**: Niet geïmplementeerd
+- **Bestandsnaam**: robot_display.py
+- **Functionaliteit**: Module voor het weergeven van de robot afbeelding
+- **Belangrijkste functies**:
+  - `display_robot()`: Toont de robot afbeelding in de Streamlit app
+    - Parameters: Geen
+    - Return waardes: Boolean (True als succesvol weergegeven)
+    - Afhankelijkheden: constants.py
+
+### quote_generator.py
+- **Status**: Niet geïmplementeerd
+- **Bestandsnaam**: quote_generator.py
+- **Functionaliteit**: Module voor het genereren en beheren van grappige uitspraken
+- **Belangrijkste functies**:
+  - `get_next_quote()`: Haalt de volgende uitspraak op uit de lijst
+    - Parameters: Huidige index (int, optioneel)
+    - Return waardes: String (de volgende uitspraak), Integer (nieuwe index)
+    - Afhankelijkheden: constants.py
+
+### styles.py
+- **Status**: Niet geïmplementeerd
+- **Bestandsnaam**: styles.py
+- **Functionaliteit**: Module voor het definiëren van CSS-stijlen voor de applicatie
+- **Belangrijkste functies**:
+  - `load_styles()`: Laadt de CSS-stijlen in de Streamlit app
+    - Parameters: Geen
+    - Return waardes: String (CSS-code)
+    - Afhankelijkheden: Geen
+
+### constants.py
+- **Status**: Niet geïmplementeerd
+- **Bestandsnaam**: constants.py
+- **Functionaliteit**: Module voor het centraal bewaren van constanten zoals uitspraken en pad naar robot afbeelding
+- **Belangrijkste functies**: Geen functies, alleen constanten
+
+## 4. Status
+Alle modules zijn nog niet geïmplementeerd. Het project staat in de opstartfase.
+
+## 5. Volgende stappen
+
+### Must-haves:
+1. Implementeer constants.py met een lijst van grappige uitspraken
+2. Implementeer de basic robot_display.py module voor het weergeven van de robot
+3. Implementeer quote_generator.py voor het genereren van uitspraken
+4. Implementeer styles.py voor de basis styling
+5. Implementeer app.py als hoofdmodule om alles samen te voegen
+6. Maak een requirements.txt bestand
+7. Maak een README.md met installatie-instructies
+
+### Nice-to-haves:
+1. Animatie wanneer een nieuwe uitspraak verschijnt
+2. Meerdere robot designs om uit te kiezen
+3. Mogelijkheid om je eigen uitspraken toe te voegen
+4. Verschillende thema's voor de interface
+5. Geluidjes bij het klikken op de robot
