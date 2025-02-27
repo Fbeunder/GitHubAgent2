@@ -5,6 +5,11 @@ Dit bestand bevat alle constanten die in de applicatie worden gebruikt,
 inclusief een lijst van grappige uitspraken over wat een GitHub Agent kan doen.
 """
 
+import os
+
+# Basis pad relatief ten opzichte van de locatie van dit bestand
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # Lijst met grappige uitspraken over GitHub Agents
 QUOTES = [
     "Als GitHub Agent kan ik commits maken zonder koffie te drinken... Maar het is wel fijner mét.",
@@ -24,8 +29,8 @@ QUOTES = [
     "Soms droom ik van perfect geïndenteerde code."
 ]
 
-# Pad naar de robot afbeelding
-ROBOT_IMAGE_PATH = "assets/robot.svg"
+# Pad naar de robot afbeelding met correcte pad constructie
+ROBOT_IMAGE_PATH = os.path.join(BASE_DIR, "assets", "robot.svg")
 
 # App configuratie parameters
 APP_TITLE = "Stan de GitHub Agent"
