@@ -15,7 +15,7 @@ Het project heeft een modulaire structuur met de volgende modules:
 ## 3. Modules
 
 ### app.py
-- **Status**: Geïmplementeerd en gefixeerd
+- **Status**: Geïmplementeerd en verbeterd voor betere robotklikfunctionaliteit
 - **Bestandsnaam**: app.py
 - **Functionaliteit**: Hoofdmodule die de Streamlit applicatie initialiseert en de andere modules samenvoegt
 - **Belangrijkste functies**:
@@ -43,7 +43,7 @@ Het project heeft een modulaire structuur met de volgende modules:
     - Parameters: Geen
     - Return waardes: Geen
     - Afhankelijkheden: styles.py
-  - `display_robot_section()`: Toont de robot sectie
+  - `display_robot_section()`: Toont de robot sectie met klikbare robot
     - Parameters: Geen
     - Return waardes: Geen
     - Afhankelijkheden: robot_display.py
@@ -53,18 +53,18 @@ Het project heeft een modulaire structuur met de volgende modules:
     - Afhankelijkheden: Geen
 
 ### robot_display.py
-- **Status**: Geïmplementeerd en verbeterd met base64-encoding
+- **Status**: Geïmplementeerd, verbeterd met base64-encoding en klikfunctionaliteit
 - **Bestandsnaam**: robot_display.py
-- **Functionaliteit**: Module voor het weergeven van de robot afbeelding
+- **Functionaliteit**: Module voor het weergeven van de robot afbeelding en afhandelen van klikken op de robot
 - **Belangrijkste functies**:
   - `get_base64_encoded_image(image_path)`: Leest een afbeelding en geeft deze terug als base64-encoded string
     - Parameters: image_path (str): Pad naar de afbeelding
     - Return waardes: String (base64-encoded afbeelding) of None bij fout
     - Afhankelijkheden: Geen
-  - `display_robot()`: Toont de robot afbeelding in de Streamlit app
+  - `display_robot()`: Toont de robot afbeelding in de Streamlit app en handelt klikken af
     - Parameters: Geen
     - Return waardes: Boolean (True als succesvol weergegeven)
-    - Afhankelijkheden: constants.py
+    - Afhankelijkheden: constants.py, quote_generator.py
   - `get_robot_html(width=300)`: Helper functie voor het genereren van HTML voor de robot
     - Parameters: width (int): Breedte van de robot afbeelding in pixels
     - Return waardes: String (HTML code voor de robot)
@@ -125,7 +125,7 @@ Het project heeft een modulaire structuur met de volgende modules:
   - `PRIMARY_COLOR`, `SECONDARY_COLOR`, `BACKGROUND_COLOR`, `TEXT_COLOR`: Kleuren voor styling
 
 ## 4. Status
-Alle modules (constants.py, robot_display.py, quote_generator.py, styles.py en app.py) zijn geïmplementeerd. Er is een bug opgelost waarbij de robotafbeelding niet werd weergegeven vanwege padproblemen. Ook de requirements.txt en README.md zijn toegevoegd. Het project is volledig afgerond.
+Alle modules (constants.py, robot_display.py, quote_generator.py, styles.py en app.py) zijn geïmplementeerd. Een bug waarbij de klik op de robot zelf niet werkte is nu opgelost - gebruikers kunnen nu zowel direct op de robot klikken als op de knop eronder om een nieuwe uitspraak te krijgen. De requirements.txt en README.md zijn aanwezig. Het project is volledig functioneel.
 
 ## 5. Volgende stappen
 
@@ -138,6 +138,7 @@ Alle modules (constants.py, robot_display.py, quote_generator.py, styles.py en a
 6. ✅ Maak een requirements.txt bestand
 7. ✅ Maak een README.md met installatie-instructies
 8. ✅ Fix bug waarbij de robotafbeelding niet correct werd weergegeven
+9. ✅ Fix bug waarbij klikken op de robot zelf geen nieuwe uitspraak toonde
 
 ### Nice-to-haves:
 1. Animatie wanneer een nieuwe uitspraak verschijnt
