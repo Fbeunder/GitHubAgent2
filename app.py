@@ -93,22 +93,24 @@ def display_robot_section():
     """
     Toont de robot sectie inclusief klikbare robot afbeelding.
     
-    Implementeert de click-functionaliteit via Streamlit's onClick.
+    De klikbaarheid van de robot is nu geïmplementeerd in de robot_display module.
+    Voor toegankelijkheid is er ook nog een extra knop beschikbaar.
     """
     # Container voor robot weergave
     robot_container = st.container()
     
     with robot_container:
         # Gebruik de robot_display module om de robot weer te geven
+        # De robot is nu direct klikbaar en verwerkt kliks intern
         success = robot_display.display_robot()
         
         if not success:
             st.info("Zorg ervoor dat de assets directory bestaat met een robot.svg bestand.")
             return
         
-        # Een onzichtbare button onder de robot voor klikinteractie
-        # (Streamlit heeft geen directe klik-detectie op afbeeldingen)
-        if st.button("Klik op de Robot", key="robot_button", help="Klik voor een grappige uitspraak"):
+        # Een zichtbare button onder de robot voor alternatieve klikinteractie
+        # (Voor toegankelijkheidsdoeleinden)
+        if st.button("Klik op de Robot", key="robot_button", help="Alternatieve knop voor een nieuwe uitspraak"):
             handle_robot_click()
 
 
