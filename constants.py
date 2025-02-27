@@ -25,7 +25,7 @@ QUOTES = [
 ]
 
 # Pad naar de robot afbeelding
-ROBOT_IMAGE_PATH = "assets/robot.png"
+ROBOT_IMAGE_PATH = "assets/robot.svg"
 
 # App configuratie parameters
 APP_TITLE = "Stan de GitHub Agent"
